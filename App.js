@@ -1,31 +1,23 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-
-import Slider from '@react-native-community/slider';
+import {View, StyleSheet, Text, Switch} from 'react-native';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      valor: 0,
+      status: false,
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Slider
-          minimumValue={0}
-          maximumValue={100}
-          onValueChange={valorSelecionado =>
-            this.setState({valor: valorSelecionado})
-          }
-          value={this.state.valor}
-          minimumTrackTintColor="#0F0"
-          maximumTrackTintColor="#F00"
+        <Switch
+          value={this.state.status}
+          onValueChange={valorSwitch => this.setState({status: valorSwitch})}
         />
         <Text style={{textAlign: 'center', fontSize: 30}}>
-          Você tem {this.state.valor.toFixed(1)} kg
+          {this.state.status ? 'Ativo' : 'Inativo'}
         </Text>
       </View>
     );
@@ -34,7 +26,6 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginTop: 15,
   },
 });
